@@ -21,4 +21,24 @@ class MathControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("8.0"));
     }
+
+    @Test
+    void shouldThrowExceptionWhenInputIsNotNumeric() throws Exception {
+        mockMvc.perform(get("/math/sum/a/b"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenOneInputIsNotNumeric() throws Exception {
+        mockMvc.perform(get("/math/sum/1/b"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenMissingInput() throws Exception {
+        mockMvc.perform(get("/math/sum/b/"))
+                .andExpect(status().isNotFound());
+    }
+
+
 }
