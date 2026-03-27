@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.expections.UnsupportedMathOperationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ){
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new IllegalArgumentException("Invalid input");
+            throw new UnsupportedMathOperationException("Set a numeric value!");
         }
 
         return Double.parseDouble(numberOne) + Double.parseDouble(numberTwo);
@@ -22,7 +23,7 @@ public class MathController {
 
     private boolean isNumeric(String numberOne) {
         if(numberOne == null || numberOne.isEmpty()){
-            throw new IllegalArgumentException("Input cannot be null or empty");
+            throw new UnsupportedMathOperationException("Input cannot be null or empty");
         }
         try {
             Double.parseDouble(numberOne);
