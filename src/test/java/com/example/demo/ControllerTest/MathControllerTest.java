@@ -40,5 +40,39 @@ class MathControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    void shouldReturnSquareOfNumber() throws Exception {
+        mockMvc.perform(get("/math/square/5"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("25.0"));
+    }
 
+    @Test
+    void shouldSubstractTwoNumbers() throws Exception {
+        mockMvc.perform(get("/math/sub/5/3"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("2.0"));
+    }
+
+    @Test
+    void shouldMultiplyTwoNumbers() throws Exception {
+        mockMvc.perform(get("/math/mult/5/3"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("15.0"));
+    }
+
+
+    @Test
+    void shouldDivideTwoNumbers() throws Exception {
+        mockMvc.perform(get("/math/div/6/3"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("2.0"));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenDividingByZero() throws Exception {
+         mockMvc.perform(get("/math/div/6/0"))
+                 .andExpect(status().isBadRequest());
+
+     }
 }
