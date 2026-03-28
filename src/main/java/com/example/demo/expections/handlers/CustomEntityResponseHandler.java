@@ -15,7 +15,7 @@ import java.util.Date;
 
 @RestController
 @ControllerAdvice
-public class CustomEntityResponseHanlder extends ResponseEntityExceptionHandler {
+public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler {
 
     //Exception handling for all exceptions
     @ExceptionHandler(Exception.class)
